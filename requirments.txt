@@ -1,0 +1,4 @@
+SpeechRecognition
+noisereduce
+soundfile
+numpy
