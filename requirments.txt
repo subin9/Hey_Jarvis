@@ -2,3 +2,4 @@ SpeechRecognition
 noisereduce
 soundfile
 numpy
+TTS
