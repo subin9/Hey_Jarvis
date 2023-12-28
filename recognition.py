@@ -14,19 +14,18 @@ from datetime import datetime
 import pyautogui
 import cv2
 import numpy as np
-import argparse
+# import argparse
+#
+# args = argparse.ArgumentParser()
+# args.add_argument("--weather_api", type=str, default=False)
+# args.add_argument("--openai_api", type=str, default=False)
+# args.add_argument("--porcupine_api", type=str, default=False)
+# args = args.parse_args()
 
-args = argparse.ArgumentParser()
-args.add_argument("--weather_api", type=str, default=False)
-args.add_argument("--openai_api", type=str, default=False)
-args.add_argument("--porcupine_api", type=str, default=False)
-args = args.parse_args()
+weather_authKey='gGryFchORUuq8hXITjVLWQ'
+porcupine_api_key='4miWi+Z8pccHq/VEEHgq+n+ctXn4fTxFZBwaxnajrFCLT61WbVBRKg=='
 
-weather_authKey=args.weatherapi
-openai_api_key=args.openaiapi
-porcupine_api_key=args.porcupineapi
-
-client = OpenAI(api_key=openai_api_key)
+# client = OpenAI(api_key=openai_api_key)
 
 porcupine = pvporcupine.create(
     access_key=porcupine_api_key,
@@ -116,14 +115,15 @@ def tts(text):
 
 
 def gpt(command):
-    completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are a Jarvis in Ironman movies, 2008"},
-            {"role": "user", "content": "Answer like Jarvis " + command},
-        ]
-    )
-    return completion.choices[0].message.content
+    # completion = client.chat.completions.create(
+    #     model="gpt-3.5-turbo",
+    #     messages=[
+    #         {"role": "system", "content": "You are a Jarvis in Ironman movies, 2008"},
+    #         {"role": "user", "content": "Answer like Jarvis " + command},
+    #     ]
+    # )
+    # return completion.choices[0].message.content
+    return
 
 
 def check_command(text):
@@ -198,8 +198,9 @@ def execute_command(command,api):
 
         start = datetime.today().hour - 2
         end = datetime.today().hour - 1
+        stn=args.pop()
         url = "https://apihub.kma.go.kr/api/typ01/url/kma_sfctm3.php?tm1=" + str(start) + "&tm2=" + str(
-            end) + "&stn=" + str(station_dict[args]) + "&help=0&authKey=" + weather_authKey
+            end) + "&stn=" + str(station_dict[stn]) + "&help=0&authKey=" + weather_authKey
         r = requests.get(url)
         text = r.text.split('\n')[-3].split()
 
