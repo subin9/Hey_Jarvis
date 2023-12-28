@@ -1,5 +1,12 @@
 SpeechRecognition
-noisereduce
-soundfile
-numpy
 TTS
+pvporcupine
+pyaudio
+wave
+konlpy
+openai
+requests
+pyautogui
+opencv-python
+numpy
+argparse
